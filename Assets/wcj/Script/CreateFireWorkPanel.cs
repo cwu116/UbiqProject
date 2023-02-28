@@ -31,6 +31,7 @@ public class CreateFireWorkPanel : MonoBehaviour
     public void OnClickFinishButton()
     {
         int data = dropDownBar.value;
-        Debug.Log(data);
+        FireWorkShape shape = (FireWorkShape)data;
+        FireWorkManager.instance.CreateNewFireWork(colorImg.color,shape);
     }
 }
