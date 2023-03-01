@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireWork : MonoBehaviour
+public class FireWork 
 {
     //存储烟花的基本信息
 
@@ -13,6 +13,12 @@ public class FireWork : MonoBehaviour
     //烟花形状
     public FireWorkShape fireWorkShape;
 
+    public FireWork(int id, Color color, FireWorkShape shape)
+    {
+        fireWorkID = id;
+        fireWorkColor = color;
+        fireWorkShape = shape;
+    }
 }
 
 public enum FireWorkShape
