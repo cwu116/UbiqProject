@@ -33,5 +33,6 @@ public class CreateFireWorkPanel : MonoBehaviour
         int data = dropDownBar.value;
         FireWorkShape shape = (FireWorkShape)data;
         FireWorkManager.instance.CreateNewFireWork(colorImg.color,shape);
+        this.gameObject.transform.parent.gameObject.SetActive(false);
     }
 }
