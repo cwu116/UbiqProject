@@ -7,7 +7,7 @@ using UnityEngine;
 public class FireBox : MonoBehaviour
 {
     // Start is called before the first frame update
-    public List<FireWorkSchedule> Schedules = new List<FireWorkSchedule>();
+    public List<FireWorkSchedule> Schedulers = new List<FireWorkSchedule>();
     public float timer = 0.0f;
     public int counter = 0;
     public bool trigger = false;
@@ -30,7 +30,7 @@ public class FireBox : MonoBehaviour
 
     void Execute()
     {
-        if (index <= Schedulers.Length - 1)
+        if (index <= Schedulers.Capacity - 1)
         {
             this_duration = Schedulers[index].Get_duration();
         }
