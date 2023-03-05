@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FireWorkSchedule : MonoBehaviour
@@ -10,7 +11,7 @@ public class FireWorkSchedule : MonoBehaviour
     public List<bool> fireSwitch;
     
     //存储烟花对应的编号，创建出来的烟花会带编号和配置信息进gameManager
-    public int[] fireNumber;
+    public List<int> fireNumber;
 
     //16长度每个长度的间隔因子
     public float timeFactor;
@@ -19,6 +20,9 @@ public class FireWorkSchedule : MonoBehaviour
     public float timer = 0.0f;
     public int counter = 0;
     public bool trigger ;
+
+
+    public GameObject firework;
     
     // Start is called before the first frame update
     void Start()
@@ -54,8 +58,13 @@ public class FireWorkSchedule : MonoBehaviour
             timer += Time.deltaTime;
             if (timer >= counter * timeFactor)
             {
-                print("Fire");
-                transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
+                //print("Fire");
+                //transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
+                if(fireSwitch[counter] == true)
+                {
+                    Instantiate(firework, transform.position, Quaternion.identity);
+                    
+                }
                 counter += 1;
             }
 
@@ -72,11 +81,21 @@ public class FireWorkSchedule : MonoBehaviour
         timer = 0.0f;
         counter = 0;
         trigger = false;
+
     }
 
     public float Get_duration()
     {
         return totalTime; 
+    }
+
+    public void Create(int num)
+    {
+        for(int i = 1; i<num ;i++)
+        {
+            fireSwitch.Add(false);
+            fireNumber.Add(0);
+        }
     }
 }
 
