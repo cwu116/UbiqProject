@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireTimes: 0
-  temp_button: {fileID: 7314573675082384908, guid: 72f08bfa351e3134fb825e6fc6320e4e, type: 3}
   fireSwitch: 
   fireNumber: 
   Button: []
