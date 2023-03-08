@@ -45,10 +45,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireTimes: 16
+  temp_button: {fileID: 7314573675082384908, guid: 72f08bfa351e3134fb825e6fc6320e4e, type: 3}
   fireSwitch: 00010001000100010001000100010001
   fireNumber: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  Button:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  yes: 0
   timeFactor: 0.5
   timer: 0
   counter: 0
-  trigger: 1
+  trigger: 0
   firework: {fileID: 4569512095905107854, guid: c58c47fed8a4f3849ad45dd0a5c5d411, type: 3}
