@@ -7,7 +7,7 @@ public class FireWorkSchedule : MonoBehaviour
 {
     //
     public int fireTimes;
-    public GameObject temp_button;
+    //public GameObject temp_button;
     //存储烟花的固定长度的开关信息
     public List<bool> fireSwitch;
     
