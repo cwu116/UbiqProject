@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class CreateFireWorkPanel : MonoBehaviour
 {
-    public Dropdown dropDownBar;
+    
+    public TMPro.TMP_Dropdown dropDownBar;
     public Image colorImg;
     public Slider slider1;
     public Slider slider2;
