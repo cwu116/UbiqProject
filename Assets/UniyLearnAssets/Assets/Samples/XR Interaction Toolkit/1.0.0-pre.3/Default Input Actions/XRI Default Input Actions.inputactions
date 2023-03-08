@@ -587,6 +587,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "RightSecondButton",
+                    "type": "Button",
+                    "id": "f96fd476-2b1a-4acf-872c-19abea663a83",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -851,6 +860,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "RightFirstButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "de8c8cd0-8d46-44d1-83ad-ae2c6ba72b6c",
+                    "path": "<XRController>{RightHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightSecondButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -11,6 +11,8 @@ public class InputManager : MonoBehaviour
     [SerializeField]
     InputActionReference rightFirstButton;
     [SerializeField]
+    InputActionReference rightSecondButton;
+    [SerializeField]
     GameObject leftHandRay;
     [SerializeField]
     GameObject rightHandRay;
@@ -23,6 +25,8 @@ public class InputManager : MonoBehaviour
 
     [SerializeField]
     GameObject crateFireWorkUI;
+
+    public bool rightSecondButtonOn;
 
     public static InputManager instance;
     
@@ -41,6 +45,10 @@ public class InputManager : MonoBehaviour
 
         InputAction inputActionright1 = rightFirstButton.action;
         inputActionright1.started += OpenCreateFireWorkPanel;
+
+        InputAction inputActionright2 = rightSecondButton.action;
+        inputActionright2.started += SwitchRightButtonOn;
+        inputActionright2.canceled += SwitchRightButtonOff;
     }
 
     void SwitchHand(InputAction.CallbackContext obj)
@@ -72,6 +80,18 @@ public class InputManager : MonoBehaviour
             crateFireWorkUI.transform.position = playerPos.transform.position + playerPos.transform.forward * 2;
             crateFireWorkUI.transform.LookAt(playerPos.transform);
         }
+    }
+
+    void SwitchRightButtonOn(InputAction.CallbackContext obj)
+    {
+        rightSecondButtonOn = true;
+
+    }
+
+    void SwitchRightButtonOff(InputAction.CallbackContext obj)
+    {
+        rightSecondButtonOn = false;
+
     }
 
 }
