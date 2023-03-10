@@ -41,11 +41,11 @@ public class FireWorkSchedule : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // 按键发射
-        //if (Input.GetKeyDown(KeyCode.T))
-        //{
-        //    trigger = true;
-        //}
+        //按键发射
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            trigger = true;
+        }
         if (trigger)
         {
             Shoot();

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CreateFireWorkPanel : MonoBehaviour
 {
     
-    public TMPro.TMP_Dropdown dropDownBar;
+    public Dropdown dropDownBar;
     public Image colorImg;
     public Slider slider1;
     public Slider slider2;
@@ -24,8 +24,8 @@ public class CreateFireWorkPanel : MonoBehaviour
     {
 
         curColor.r = slider1.value;
-        curColor.g = slider2.value;
-        curColor.b = slider3.value;
+        curColor.g = slider3.value;
+        curColor.b = slider2.value;
         colorImg.color = curColor; 
     }
 
@@ -34,6 +34,6 @@ public class CreateFireWorkPanel : MonoBehaviour
         int data = dropDownBar.value;
         FireWorkShape shape = (FireWorkShape)data;
         FireWorkManager.instance.CreateNewFireWork(colorImg.color,shape);
-        this.gameObject.transform.parent.gameObject.SetActive(false);
+        //this.gameObject.transform.parent.gameObject.SetActive(false);
     }
 }
