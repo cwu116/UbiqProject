@@ -24,7 +24,7 @@ public class FireWorkSchedule : MonoBehaviour
     public float timer = 0.0f;
     public int counter = 0;
     public bool trigger ;
-    private NewFireWorkManager man;
+    //private NewFireWorkManager man;
 
     public GameObject firework;
     
@@ -36,7 +36,7 @@ public class FireWorkSchedule : MonoBehaviour
         //fireNumber = new int[fireTimes];
         trigger = false;
         //Create(16);
-        man = GameObject.Find("FireworkManager").GetComponent<NewFireWorkManager>();
+        //man = GameObject.Find("FireworkManager").GetComponent<NewFireWorkManager>();
     }
 
     // Update is called once per frame
@@ -70,6 +70,17 @@ public class FireWorkSchedule : MonoBehaviour
 
     }
 
+    private void ChangeFWShapeColor(GameObject ob, int id)
+    {
+        ParticleSystem.MainModule settings = ob.GetComponent<ParticleSystem>().main;
+        settings.startColor = FireWorkManager.instance.fireWorkDict[id].fireWorkColor;
+        GameObject Around = ob.transform.GetChild(0).gameObject;
+        GameObject Blast = ob.transform.GetChild(1).gameObject;
+        ParticleSystem.MainModule settingsAround = Around.GetComponent<ParticleSystem>().main;
+        settingsAround.startColor = FireWorkManager.instance.fireWorkDict[id].fireWorkColor;
+        ParticleSystem.MainModule settingsBlast = Blast.GetComponent<ParticleSystem>().main;
+        settingsBlast.startColor = FireWorkManager.instance.fireWorkDict[id].fireWorkColor;
+    }
     public void Shoot()
     {
         if (counter < fireTimes)
@@ -82,8 +93,12 @@ public class FireWorkSchedule : MonoBehaviour
                 if(fireSwitch[counter] == true)
                 {
                     
-                    Instantiate(man.fireWorkDict[fireNumber[counter]], transform.position, Quaternion.identity);
-                    
+                    GameObject ob = Instantiate(firework, transform.position, firework.transform.rotation);
+                    ChangeFWShapeColor(ob, fireNumber[counter]);
+
+
+
+
                 }
                 counter += 1;
             }

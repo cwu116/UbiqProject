@@ -35,6 +35,7 @@ public class FireWorkManager : MonoBehaviour
         FireWork fireWork = new FireWork(curID, color, shape);
         fireWorkDict.Add(curID, fireWork);
         curID++;
+        PrintElement();
     }
 
     public void PrintElement()
