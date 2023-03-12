@@ -24,7 +24,7 @@ public class FireWorkSchedule : MonoBehaviour
     public float timer = 0.0f;
     public int counter = 0;
     public bool trigger ;
-
+    private NewFireWorkManager man;
 
     public GameObject firework;
     
@@ -35,7 +35,8 @@ public class FireWorkSchedule : MonoBehaviour
         //fireSwitch = new List<bool>(fireTimes);
         //fireNumber = new int[fireTimes];
         trigger = false;
-        Create(16);
+        //Create(16);
+        man = GameObject.Find("FireworkManager").GetComponent<NewFireWorkManager>();
     }
 
     // Update is called once per frame
@@ -80,11 +81,13 @@ public class FireWorkSchedule : MonoBehaviour
                 //transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
                 if(fireSwitch[counter] == true)
                 {
-                    Instantiate(firework, transform.position, Quaternion.identity);
+                    
+                    Instantiate(man.fireWorkDict[fireNumber[counter]], transform.position, Quaternion.identity);
                     
                 }
                 counter += 1;
             }
+
 
         }
         else
