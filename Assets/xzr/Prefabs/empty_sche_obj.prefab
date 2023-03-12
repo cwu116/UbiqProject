@@ -54,7 +54,7 @@ MonoBehaviour:
   timer: 0
   counter: 0
   trigger: 0
-  firework: {fileID: 4569512095905107854, guid: c58c47fed8a4f3849ad45dd0a5c5d411, type: 3}
+  firework: {fileID: 672061696231942456, guid: 86746f4c898eb954a83814308e870f08, type: 3}
 --- !u!1001 &2986768159488043598
 PrefabInstance:
   m_ObjectHideFlags: 0

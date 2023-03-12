@@ -30,16 +30,18 @@ public class FireWorkManager : MonoBehaviour
         
     }
 
-    public void CreateNewFireWork(Color color,FireWorkShape shape)
+    public void CreateNewFireWork(Color color, FireWorkShape shape)
     {
         FireWork fireWork = new FireWork(curID, color, shape);
         fireWorkDict.Add(curID, fireWork);
         curID++;
+        PrintElement();
     }
 
     public void PrintElement()
     {
-        foreach (var item in fireWorkDict){
+        foreach (var item in fireWorkDict)
+        {
             Debug.Log("Id is " + item.Key + " Color is " + item.Value.fireWorkColor + " Shape is " + item.Value.fireWorkShape);
         }
     }

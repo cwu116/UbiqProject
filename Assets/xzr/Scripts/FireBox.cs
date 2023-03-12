@@ -26,6 +26,7 @@ public class FireBox : MonoBehaviour
     {
         //S_objects.Add(Instantiate(temp));
         //Schedulers[0] = S_objects[0].GetComponent<FireWorkSchedule>();
+        add(16);
     }
 
     // Update is called once per frame
@@ -35,10 +36,10 @@ public class FireBox : MonoBehaviour
         {
             trigger = true;
         }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            add(16);
-        }
+        //if (Input.GetKeyDown(KeyCode.A))
+        //{
+        //    add(16);
+        //}
         
         if (trigger)
         {
