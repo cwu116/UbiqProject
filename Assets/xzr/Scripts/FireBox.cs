@@ -10,22 +10,35 @@ public class FireBox : MonoBehaviour
     public GameObject temp;
     public List<GameObject> S_objects;
     public List<FireWorkSchedule> Schedulers;
+    //public List<GameObject> Button;
     //= new List<FireWorkSchedule>()
     public float timer = 0.0f;
     public int counter = 0;
     public bool trigger = false;
     public float this_duration = 0.0f;
     public int index = 0;
+    private int last_onScreen = 0;
+    public int onScreen;
+
 
 
     //void Awake()
     //{
 
     //}
+    public void Xianshi()
+    {
+        Schedulers[last_onScreen].Unsee();
+        Schedulers[onScreen].See();
+        last_onScreen = onScreen;
+    }
     void Start()
     {
         //S_objects.Add(Instantiate(temp));
         //Schedulers[0] = S_objects[0].GetComponent<FireWorkSchedule>();
+        Initialize();
+        last_onScreen = 0;
+        onScreen = 0;
         add(16);
     }
 
@@ -36,15 +49,21 @@ public class FireBox : MonoBehaviour
         {
             trigger = true;
         }
-        //if (Input.GetKeyDown(KeyCode.A))
-        //{
-        //    add(16);
-        //}
-        
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            add(16);
+        }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            Xianshi();
+        }
+
         if (trigger)
         {
             Execute();
         }
+
+
     }
 
     void Execute()
@@ -56,7 +75,7 @@ public class FireBox : MonoBehaviour
 
             if (timer >= this_duration)
             {
-                print(timer);
+                //print(timer);
                 Schedulers[index].trigger = true;
                 this_duration += Schedulers[index].Get_duration();
                 index += 1;
@@ -85,5 +104,7 @@ public class FireBox : MonoBehaviour
         S_objects.Add(Instantiate(temp, transform.position, Quaternion.identity, transform));
         Schedulers.Add(S_objects[S_objects.Count - 1].GetComponent<FireWorkSchedule>());
         Schedulers[S_objects.Count - 1].Create(capacity);
+        onScreen = S_objects.Count - 1;
+        Xianshi();
     }
 }

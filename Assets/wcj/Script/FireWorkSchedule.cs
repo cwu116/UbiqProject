@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.OnScreen;
 
 public class FireWorkSchedule : MonoBehaviour
 {
@@ -27,6 +28,17 @@ public class FireWorkSchedule : MonoBehaviour
     //private NewFireWorkManager man;
 
     public GameObject firework;
+ 
+    public void See()
+    {
+        transform.GetChild(0).gameObject.SetActive(true);
+
+    }
+    
+    public void Unsee()
+    {
+        transform.GetChild(0).gameObject.SetActive(false);
+    }
     
     // Start is called before the first frame update
     void Start()
@@ -35,6 +47,7 @@ public class FireWorkSchedule : MonoBehaviour
         //fireSwitch = new List<bool>(fireTimes);
         //fireNumber = new int[fireTimes];
         trigger = false;
+        //Unsee();
         //Create(16);
         //man = GameObject.Find("FireworkManager").GetComponent<NewFireWorkManager>();
     }
@@ -43,10 +56,10 @@ public class FireWorkSchedule : MonoBehaviour
     void Update()
     {
         //按键发射
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            trigger = true;
-        }
+        //if (Input.GetKeyDown(KeyCode.T))
+        //{
+        //    trigger = true;
+        //}
         if (trigger)
         {
             Shoot();
