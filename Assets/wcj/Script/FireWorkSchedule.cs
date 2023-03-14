@@ -93,6 +93,9 @@ public class FireWorkSchedule : MonoBehaviour
         settingsAround.startColor = FireWorkManager.instance.fireWorkDict[id].fireWorkColor;
         ParticleSystem.MainModule settingsBlast = Blast.GetComponent<ParticleSystem>().main;
         settingsBlast.startColor = FireWorkManager.instance.fireWorkDict[id].fireWorkColor;
+
+        //ParticleSystem.ShapeModule Blastshape = Blast.GetComponent<ParticleSystem>().shape;
+        //Blastshape.shapeType = 
     }
     public void Shoot()
     {

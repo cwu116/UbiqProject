@@ -53,9 +53,28 @@ public class FireBox : MonoBehaviour
         {
             add(16);
         }
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            onScreen += 1;
+            onScreen %= S_objects.Count;
+            Xianshi();
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            onScreen += S_objects.Count;
+            onScreen -= 1 ;
+            onScreen %= S_objects.Count;
+            Xianshi();
+        }
+
         if (Input.GetKeyDown(KeyCode.O))
         {
-            Xianshi();
+            Schedulers[onScreen].See();
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            Schedulers[onScreen].Unsee();
         }
 
         if (trigger)
