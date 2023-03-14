@@ -93,6 +93,9 @@ public class FireWorkSchedule : MonoBehaviour
         settingsAround.startColor = FireWorkManager.instance.fireWorkDict[id].fireWorkColor;
         ParticleSystem.MainModule settingsBlast = Blast.GetComponent<ParticleSystem>().main;
         settingsBlast.startColor = FireWorkManager.instance.fireWorkDict[id].fireWorkColor;
+
+        ParticleSystem.ShapeModule Blastshape = Blast.GetComponent<ParticleSystem>().shape;
+        Blastshape.shapeType = FireWorkManager.instance.shapeDict[(int)FireWorkManager.instance.fireWorkDict[id].fireWorkShape];
     }
     public void Shoot()
     {
@@ -105,13 +108,8 @@ public class FireWorkSchedule : MonoBehaviour
                 //transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
                 if(fireSwitch[counter] == true)
                 {
-                    
                     GameObject ob = Instantiate(firework, transform.position, firework.transform.rotation);
                     ChangeFWShapeColor(ob, fireNumber[counter]);
-
-
-
-
                 }
                 counter += 1;
             }
