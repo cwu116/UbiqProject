@@ -8,6 +8,7 @@ public class FireWorkManager : MonoBehaviour
 
     //存储创建好的不同类型的烟花
     public Dictionary<int, FireWork> fireWorkDict;
+    public Dictionary<int, ParticleSystemShapeType> shapeDict; 
     int curID;
 
     private void Awake()
@@ -22,27 +23,30 @@ public class FireWorkManager : MonoBehaviour
     void Start()
     {
         fireWorkDict = new Dictionary<int, FireWork>();
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void CreateNewFireWork(Color color, FireWorkShape shape)
     {
         FireWork fireWork = new FireWork(curID, color, shape);
         fireWorkDict.Add(curID, fireWork);
         curID++;
-        PrintElement();
     }
-
-    public void PrintElement()
+    
+    public void CreateShapeDict()
     {
-        foreach (var item in fireWorkDict)
-        {
-            Debug.Log("Id is " + item.Key + " Color is " + item.Value.fireWorkColor + " Shape is " + item.Value.fireWorkShape);
-        }
+        shapeDict.Add(0, ParticleSystemShapeType.Sphere);
+        shapeDict.Add(1, ParticleSystemShapeType.Cone);
+        shapeDict.Add(2, ParticleSystemShapeType.Donut);
+        shapeDict.Add(3, ParticleSystemShapeType.Mesh);
+        shapeDict.Add(4, ParticleSystemShapeType.Sprite);
+        shapeDict.Add(5, ParticleSystemShapeType.Hemisphere);
+        shapeDict.Add(6, ParticleSystemShapeType.Circle);
+        shapeDict.Add(7, ParticleSystemShapeType.Box);
+        shapeDict.Add(8, ParticleSystemShapeType.Rectangle);
     }
+    
+
+    
 }
