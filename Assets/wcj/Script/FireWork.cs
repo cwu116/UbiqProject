@@ -26,5 +26,6 @@ public enum FireWorkShape
     fireWorkType1,
     fireWorkType2,
     fireWorkType3,
-    fireWorkType4
+    fireWorkType4,
+    fireWorkType5
 }
