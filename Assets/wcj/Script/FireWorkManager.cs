@@ -22,7 +22,7 @@ public class FireWorkManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        fireWorkDict = new Dictionary<int, FireWork>();
+        CreateShapeDict();
 
     }
 
@@ -36,6 +36,7 @@ public class FireWorkManager : MonoBehaviour
     
     public void CreateShapeDict()
     {
+        fireWorkDict = new Dictionary<int, FireWork>();
         shapeDict.Add(0, ParticleSystemShapeType.Sphere);
         shapeDict.Add(1, ParticleSystemShapeType.Cone);
         shapeDict.Add(2, ParticleSystemShapeType.Donut);
