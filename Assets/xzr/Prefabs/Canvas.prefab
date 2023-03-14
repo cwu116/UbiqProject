@@ -2425,6 +2425,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3185637289529075806}
     m_Modifications:
+    - target: {fileID: 7314573675082384882, guid: 72f08bfa351e3134fb825e6fc6320e4e, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7314573675082384882, guid: 72f08bfa351e3134fb825e6fc6320e4e, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7314573675082384882, guid: 72f08bfa351e3134fb825e6fc6320e4e, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7314573675082384908, guid: 72f08bfa351e3134fb825e6fc6320e4e, type: 3}
       propertyPath: m_Name
       value: Button

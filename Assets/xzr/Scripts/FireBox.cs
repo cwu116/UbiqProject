@@ -39,7 +39,7 @@ public class FireBox : MonoBehaviour
         Initialize();
         last_onScreen = 0;
         onScreen = 0;
-        add(16);
+        Add(16);
     }
 
     // Update is called once per frame
@@ -51,20 +51,15 @@ public class FireBox : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
-            add(16);
+            Add(16);
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            onScreen += 1;
-            onScreen %= S_objects.Count;
-            Xianshi();
+            NextPage();
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            onScreen += S_objects.Count;
-            onScreen -= 1 ;
-            onScreen %= S_objects.Count;
-            Xianshi();
+            PrePage();
         }
 
         if (Input.GetKeyDown(KeyCode.O))
@@ -83,6 +78,21 @@ public class FireBox : MonoBehaviour
         }
 
 
+    }
+
+    public void PrePage()
+    {
+        onScreen += S_objects.Count;
+        onScreen -= 1;
+        onScreen %= S_objects.Count;
+        Xianshi();
+    }
+
+    public void NextPage()
+    {
+        onScreen += 1;
+        onScreen %= S_objects.Count;
+        Xianshi();
     }
 
     void Execute()
@@ -115,7 +125,7 @@ public class FireBox : MonoBehaviour
         index = 0;
     }
 
-    private void add(int capacity)
+    public void Add(int capacity)
     {
 
         //Schedulers.Add(new FireWorkSchedule());
