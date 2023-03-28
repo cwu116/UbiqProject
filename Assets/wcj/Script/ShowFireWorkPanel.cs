@@ -24,6 +24,7 @@ public class ShowFireWorkPanel : MonoBehaviour
 
     void CheckNew()
     {
+        if (FireWorkManager.instance.fireWorkDict == null) return;
         foreach (var x in FireWorkManager.instance.fireWorkDict)
         {
             if (IDList.Contains(x.Key) == false)
