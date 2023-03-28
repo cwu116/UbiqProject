@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Ubiq.Messaging;
 using UnityEngine;
 
 public class FireWorkManager : MonoBehaviour
@@ -26,6 +27,7 @@ public class FireWorkManager : MonoBehaviour
         shapeDict = new Dictionary<int, ParticleSystemShapeType>();
         CreateShapeDict();
 
+        context = NetworkScene.Register(this);
     }
 
 
@@ -34,6 +36,8 @@ public class FireWorkManager : MonoBehaviour
         FireWork fireWork = new FireWork(curID, color, shape);
         fireWorkDict.Add(curID, fireWork);
         curID++;
+        context.SendJson(new Message(color, shape));
+        owner = true;
     }
     
     public void CreateShapeDict()
@@ -49,7 +53,51 @@ public class FireWorkManager : MonoBehaviour
         shapeDict.Add(7, ParticleSystemShapeType.Box);
         shapeDict.Add(8, ParticleSystemShapeType.Rectangle);
     }
-    
 
-    
+
+    private NetworkContext context; // new
+    private bool owner; // new
+
+    private struct Message
+    {
+        //public Dictionary<int, FireWork> fireWorkDictFromOther;
+
+        //public Message(Dictionary<int, FireWork> fireWorkDict)
+        //{
+        //    fireWorkDictFromOther =  new Dictionary<int, FireWork>(fireWorkDict);
+
+        //}
+ 
+        public Color color;
+        public FireWorkShape fireworkShape;
+        public Message(Color color, FireWorkShape fireworkShape )
+        {
+            this.color = color;
+            this.fireworkShape = fireworkShape;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (owner)
+        {
+            // 4. Send transform update messages if we are the current 'owner'
+
+            owner = false;
+        }
+    }
+
+
+    public void ProcessMessage(ReferenceCountedSceneGraphMessage msg)
+    {
+        // 3. Receive and use transform update messages from remote users
+        // Here we use them to update our current position
+        var data = msg.FromJson<Message>();
+        FireWork fireWork = new FireWork(curID, data.color, data.fireworkShape);
+        fireWorkDict.Add(curID, fireWork);
+        curID++;
+        //fireWorkDict = data.fireWorkDictFromOther;
+    }
+
+
 }

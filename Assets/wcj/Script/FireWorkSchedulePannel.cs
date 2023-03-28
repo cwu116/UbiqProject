@@ -24,6 +24,6 @@ public class FireWorkSchedulePannel : MonoBehaviour
 
     public void CreatePage()
     {
-        firebox.Add(1);
+        firebox.Add(16);
     }
 }
