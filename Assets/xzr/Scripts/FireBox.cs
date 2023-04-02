@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
+using Ubiq.Messaging;
+using UnityEditor;
+//using UnityEditor.Rendering.LookDev;
 
 public class FireBox : MonoBehaviour
 {
@@ -15,17 +18,27 @@ public class FireBox : MonoBehaviour
     public float timer = 0.0f;
     public int counter = 0;
     public bool trigger = false;
+    private bool last_trigger;
     public float this_duration = 0.0f;
     public int index = 0;
     private int last_onScreen = 0;
     public int onScreen;
 
 
+    // network part
+    private NetworkContext context;
 
-    //void Awake()
-    //{
+    private struct Message
+    {
+        public bool trigger;
 
-    //}
+        public Message(bool tr)
+        {
+            this.trigger = tr;
+        }
+    }
+
+
     public void Xianshi()
     {
         Schedulers[last_onScreen].Unsee();
@@ -39,9 +52,27 @@ public class FireBox : MonoBehaviour
         Initialize();
         last_onScreen = 0;
         onScreen = 0;
+        last_trigger = trigger;
         Add(16);
+        context = NetworkScene.Register(this);
     }
 
+    public void ProcessMessage(ReferenceCountedSceneGraphMessage msg)
+    {
+        var data = msg.FromJson<Message>();
+        trigger = data.trigger;
+        last_trigger = trigger;
+    }
+
+
+    private void FixedUpdate()
+    {
+        if (last_trigger != trigger)
+        {
+            context.SendJson(new Message(trigger));
+            last_trigger = trigger;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
