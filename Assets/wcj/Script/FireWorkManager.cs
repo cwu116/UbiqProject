@@ -28,6 +28,7 @@ public class FireWorkManager : MonoBehaviour
         CreateShapeDict();
 
         context = NetworkScene.Register(this);
+        CreateNewFireWork(Color.red, FireWorkShape.fireWorkType1);
     }
 
 
