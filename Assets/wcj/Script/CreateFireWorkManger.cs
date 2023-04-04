@@ -7,9 +7,12 @@ public class CreateFireWorkManger : MonoBehaviour
 {
     public static CreateFireWorkManger instance;
     public GameObject prefab;
-
+    public Material skyboxMat;
     private NetworkContext context; // new
     private bool owner; // new
+
+    float count;
+    int cd;
 
     private void Awake()
     {
@@ -18,7 +21,8 @@ public class CreateFireWorkManger : MonoBehaviour
         else
             instance = this;
 
-        
+        cd = 5;
+        count = 5;
     }
 
     private void Start()
@@ -31,29 +35,63 @@ public class CreateFireWorkManger : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            CreateNewFireWork();
+        }
+
+        else if (Input.GetKeyDown(KeyCode.T))
+        {
+            LauchFireWork();
+        }
+
+        count += Time.deltaTime;
+    }
+
+    public void CreateNewFireWork()
+    {
+        if (count > cd)
+        {
             GameObject gameobj = Instantiate(prefab);
             gameobj.transform.position = GameObject.Find("Player").transform.position + Vector3.up * 1;
-            context.SendJson(new Message(gameobj.transform.position));
+            gameobj.transform.rotation = GameObject.Find("Player").transform.rotation;
+            gameobj.transform.parent = this.gameObject.transform;
+            context.SendJson(new Message(gameobj.transform.position, gameobj.transform.rotation,0));
+            count = 0;
         }
     }
 
-
+    public void LauchFireWork()
+    {
+        FireBox [] fireboxs = transform.GetComponentsInChildren<FireBox>();
+        foreach( var x in fireboxs)
+        {
+            x.trigger = true;
+        }
+        context.SendJson(new MessageLaunch(1));
+        RenderSettings.skybox = skyboxMat;
+    }
 
 
     private struct Message
     {
-        //public Dictionary<int, FireWork> fireWorkDictFromOther;
-
-        //public Message(Dictionary<int, FireWork> fireWorkDict)
-        //{
-        //    fireWorkDictFromOther =  new Dictionary<int, FireWork>(fireWorkDict);
-
-        //}
+  
 
         public Vector3 transform;
-        public Message(Vector3 pos)
+        public Quaternion rotation;
+        public int id;
+        public Message(Vector3 pos, Quaternion rotation,int id)
         {
             this.transform = pos;
+            this.rotation = rotation;
+            this.id = id;
+        }
+    }
+
+    private struct MessageLaunch
+    {
+        public int id;
+        public MessageLaunch(int id)
+        {
+            this.id = id;
         }
     }
 
@@ -64,8 +102,21 @@ public class CreateFireWorkManger : MonoBehaviour
         // 3. Receive and use transform update messages from remote users
         // Here we use them to update our current position
         var data = msg.FromJson<Message>();
-        GameObject gameobj = Instantiate(prefab);
-        gameobj.transform.position = data.transform;
-        //fireWorkDict = data.fireWorkDictFromOther;
+        if (data.id == 0)
+        {
+            GameObject gameobj = Instantiate(prefab);
+            gameobj.transform.position = data.transform;
+            gameobj.transform.rotation = data.rotation;
+            gameobj.transform.parent = this.gameObject.transform;
+        }
+        else if (data.id == 1)
+        {
+            FireBox[] fireboxs = transform.GetComponentsInChildren<FireBox>();
+            foreach (var x in fireboxs)
+            {
+                x.trigger = true;
+            }
+            RenderSettings.skybox = skyboxMat;
+        }
     }
 }
