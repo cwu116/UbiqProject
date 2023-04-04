@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -489,7 +489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1733,7 +1733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1947,7 +1947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2231,7 +2231,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3185637289529075805, guid: be92a301d25695f47a89549dc5a1dc27, type: 3}
       propertyPath: m_Color.a
-      value: 1
+      value: 0.40392157
+      objectReference: {fileID: 0}
+    - target: {fileID: 3185637289529075805, guid: be92a301d25695f47a89549dc5a1dc27, type: 3}
+      propertyPath: m_Color.b
+      value: 0.6263795
+      objectReference: {fileID: 0}
+    - target: {fileID: 3185637289529075805, guid: be92a301d25695f47a89549dc5a1dc27, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6263795
+      objectReference: {fileID: 0}
+    - target: {fileID: 3185637289529075805, guid: be92a301d25695f47a89549dc5a1dc27, type: 3}
+      propertyPath: m_Color.r
+      value: 0.6415094
       objectReference: {fileID: 0}
     - target: {fileID: 3185637289540715538, guid: be92a301d25695f47a89549dc5a1dc27, type: 3}
       propertyPath: m_Colors.m_SelectedColor.b
@@ -2363,6 +2375,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3185637290188034386, guid: be92a301d25695f47a89549dc5a1dc27, type: 3}
       propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3185637290188034387, guid: be92a301d25695f47a89549dc5a1dc27, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3185637290188034396, guid: be92a301d25695f47a89549dc5a1dc27, type: 3}
