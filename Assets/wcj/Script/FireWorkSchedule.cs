@@ -78,8 +78,22 @@ public class FireWorkSchedule : MonoBehaviour
     {
         var data = msg.FromJson<Message>();
         timeFactor = data.timeFactor;
-        fireNumber = data.fireNumber;
+        fireNumber.Clear();
+        fireNumber.AddRange(data.fireNumber);
         last_tf = timeFactor;
+        for (int i = 0;  i < Button.Count;i++)
+        {
+            Button[i].transform.GetChild(0).gameObject.GetComponent<ShowButtonID>().ShowId();
+        }
+    }
+
+    public void SendMsg()
+    {
+        for (int i = 0; i < Button.Count; i++)
+        {
+            Button[i].transform.GetChild(0).gameObject.GetComponent<ShowButtonID>().ShowId();
+        }
+        context.SendJson(new Message(timeFactor, fireNumber));
     }
 
     private void FixedUpdate()
@@ -103,8 +117,13 @@ public class FireWorkSchedule : MonoBehaviour
         {
             Shoot();
         }
+        //Once triggered
 
-        for (int i=0; i < fireTimes; i++)
+    }
+
+    private void LateUpdate()
+    {
+        for (int i = 0; i < fireTimes; i++)
         {
             if (Button[i].GetComponent<UIbutton>().selected)
             {
@@ -116,10 +135,6 @@ public class FireWorkSchedule : MonoBehaviour
             }
 
         }
-
-        
-        //Once triggered
-
     }
 
     private void ChangeFWShapeColor(GameObject ob, int id)
