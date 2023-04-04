@@ -159,9 +159,7 @@ public class FireBox : MonoBehaviour
     public void Add(int capacity)
     {
 
-        //Schedulers.Add(new FireWorkSchedule());
-        //GameObject temp2 = Instantiate(temp)
-        S_objects.Add(Instantiate(temp, transform.position, Quaternion.identity, transform));
+        S_objects.Add(Instantiate(temp, transform.position, transform.rotation, transform));
         Schedulers.Add(S_objects[S_objects.Count - 1].GetComponent<FireWorkSchedule>());
         Schedulers[S_objects.Count - 1].Create(capacity);
         onScreen = S_objects.Count - 1;

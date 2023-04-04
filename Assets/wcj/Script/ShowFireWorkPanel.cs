@@ -31,9 +31,12 @@ public class ShowFireWorkPanel : MonoBehaviour
             {
                 IDList.Add(x.Key);
                 GameObject instance = Instantiate(prefab,content.transform);
-                TMP_Text mText = instance.transform.Find("Text").GetComponent<TMP_Text>();
+                TMP_Text mText = instance.transform.Find("ID").GetComponent<TMP_Text>();
+                TMP_Text mText1 = instance.transform.Find("Shape").GetComponent<TMP_Text>();
                 Image img = instance.GetComponent<Image>();
                 mText.text = "ID" + x.Key;
+                int id =(int)FireWorkManager.instance.fireWorkDict[x.Key].fireWorkShape;
+                mText1.text = FireWorkManager.instance.shapeDict[id].ToString();
                 img.color = x.Value.fireWorkColor;
             }
         }

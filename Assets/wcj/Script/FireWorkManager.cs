@@ -7,7 +7,7 @@ public class FireWorkManager : MonoBehaviour
 {
     public static FireWorkManager instance;
 
-    //存储创建好的不同类型的烟花
+    //Save the creating firework
     public Dictionary<int, FireWork> fireWorkDict;
     public Dictionary<int, ParticleSystemShapeType> shapeDict; 
     int curID;
@@ -61,13 +61,7 @@ public class FireWorkManager : MonoBehaviour
 
     private struct Message
     {
-        //public Dictionary<int, FireWork> fireWorkDictFromOther;
 
-        //public Message(Dictionary<int, FireWork> fireWorkDict)
-        //{
-        //    fireWorkDictFromOther =  new Dictionary<int, FireWork>(fireWorkDict);
-
-        //}
  
         public Color color;
         public FireWorkShape fireworkShape;
@@ -78,26 +72,14 @@ public class FireWorkManager : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        if (owner)
-        {
-            // 4. Send transform update messages if we are the current 'owner'
-
-            owner = false;
-        }
-    }
 
 
     public void ProcessMessage(ReferenceCountedSceneGraphMessage msg)
     {
-        // 3. Receive and use transform update messages from remote users
-        // Here we use them to update our current position
         var data = msg.FromJson<Message>();
         FireWork fireWork = new FireWork(curID, data.color, data.fireworkShape);
         fireWorkDict.Add(curID, fireWork);
         curID++;
-        //fireWorkDict = data.fireWorkDictFromOther;
     }
 
 
