@@ -11,7 +11,7 @@ public class UIbutton : MonoBehaviour
     Image img;
     //private bool owner;
     public bool selected;
-    private bool last_selected;
+    //private bool last_selected;
     private NetworkContext context;
     // Start is called before the first frame update
     
@@ -29,7 +29,8 @@ public class UIbutton : MonoBehaviour
     {
         btn = this.gameObject.GetComponent<Button>();
         img = this.gameObject.GetComponent<Image>();
-        last_selected = selected;
+        //btn.onClick.AddListener(TaskOnClick);
+        //last_selected = selected;
         context = NetworkScene.Register(this);
     }
 
@@ -37,18 +38,24 @@ public class UIbutton : MonoBehaviour
     {
         var data = msg.FromJson<Message>();
         selected = data.select;
-        last_selected = selected;
-        ChangeColor();
+        //last_selected = selected;
+        ShowColor();
     }
 
-    private void FixedUpdate()
+    void Update()
     {
-        if (last_selected != selected)
-        {
-            context.SendJson(new Message(selected));
-            Debug.Log("changed and sended.");
-            last_selected = selected;
-        }
+        //if (last_selected != selected)
+        //{
+        //    context.SendJson(new Message(selected));
+        //    Debug.Log("changed and sended.");
+        //    last_selected = selected;
+        //}
+    }
+
+    public void Sendmsg()
+    {
+        context.SendJson(new Message(selected));
+        Debug.Log("changed and sended.");
     }
 
     public void ChangeColor()
@@ -62,6 +69,18 @@ public class UIbutton : MonoBehaviour
         {
             selected = false;
             img.color = Color.white;
+        }
+    }
+
+    private void ShowColor()
+    {
+        if(selected == false)
+        {
+            img.color = Color.white;
+        }
+        else
+        {
+            img.color = Color.red;
         }
     }
 }
